@@ -17,6 +17,11 @@ test('rounds tax to the cent', () => {
   expect(invoiceTotal(invoice)).toBe(2259)
 })
 
+test('rounds half a cent of tax up', () => {
+  const invoice = createInvoice(customer, [{ description: 'Stamp', quantity: 1, unitCents: 50 }], 0.05)
+  expect(invoiceTotal(invoice)).toBe(53)
+})
+
 test('renders an invoice', () => {
   const invoice = createInvoice(customer, [{ description: 'Hosting', quantity: 1, unitCents: 1500 }])
   expect(renderInvoice(invoice)).toContain('Total  $15.00 CAD')
