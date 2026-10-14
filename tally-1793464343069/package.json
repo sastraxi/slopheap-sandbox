@@ -2,5 +2,5 @@
   "name": "tally",
   "private": true,
   "type": "module",
-  "scripts": { "test": "bun test" }
+  "scripts": { "test": "bun test", "start": "bun run src/server.ts" }
 }
