@@ -12,6 +12,11 @@ test('totals lines', () => {
   expect(invoiceTotal(invoice)).toBe(3999)
 })
 
+test('rounds tax to the cent', () => {
+  const invoice = createInvoice(customer, [{ description: 'Seat', quantity: 1, unitCents: 1999 }], 0.13)
+  expect(invoiceTotal(invoice)).toBe(2259)
+})
+
 test('renders an invoice', () => {
   const invoice = createInvoice(customer, [{ description: 'Hosting', quantity: 1, unitCents: 1500 }])
   expect(renderInvoice(invoice)).toContain('Total  $15.00 CAD')

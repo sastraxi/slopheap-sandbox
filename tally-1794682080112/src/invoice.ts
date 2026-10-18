@@ -27,7 +27,7 @@ export function subtotal(invoice: Invoice): number {
 
 export function invoiceTotal(invoice: Invoice): number {
   const net = subtotal(invoice)
-  return net + net * invoice.taxRate
+  return Math.round(net + net * invoice.taxRate)
 }
 
 export function renderInvoice(invoice: Invoice): string {
