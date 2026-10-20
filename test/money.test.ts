@@ -7,6 +7,10 @@ test('formats cents', () => {
   expect(formatAmount(123456, 'CAD')).toBe('$1,234.56 CAD')
 })
 
+test('formats in the settings currency by default', () => {
+  expect(formatAmount(1234)).toBe('$12.34 USD')
+})
+
 test('parses amounts', () => {
   expect(parseAmount('12.34')).toBe(1234)
   expect(parseAmount('7')).toBe(700)
