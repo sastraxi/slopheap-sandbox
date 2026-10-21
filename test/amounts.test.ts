@@ -1,0 +1,12 @@
+import { expect, test } from 'bun:test'
+import { allocate, roundHalfUp, sum } from '../src/amounts'
+
+test('rounds half up', () => {
+  expect(roundHalfUp(1.5)).toBe(2)
+  expect(roundHalfUp(-1.5)).toBe(-2)
+})
+
+test('allocates without losing a cent', () => {
+  expect(allocate(10, 3)).toEqual([4, 3, 3])
+  expect(allocate(9, 3)).toEqual([3, 3, 3])
+})
