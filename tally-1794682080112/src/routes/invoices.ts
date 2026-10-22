@@ -1,6 +1,6 @@
 import { findCustomer } from '../customers'
 import { createInvoice, type Invoice, invoiceTotal, renderInvoice } from '../invoice'
-import { formatAmount } from '../money'
+import { formatMoney, money } from '../money'
 import { route } from './router'
 
 const invoices = new Map<string, Invoice>()
@@ -17,7 +17,7 @@ route('POST', '/invoices', async (request) => {
   invoices.set(invoice.id, invoice)
   return Response.json({
     id: invoice.id,
-    total: formatAmount(invoiceTotal(invoice), customer.currency),
+    total: formatMoney(money(invoiceTotal(invoice), customer.currency)),
   })
 })
 
