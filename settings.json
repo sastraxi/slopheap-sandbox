@@ -1,4 +1,4 @@
 {
   "defaultCurrency": "USD",
-  "rounding": "half-up"
+  "rounding": "half-even"
 }
