@@ -13,6 +13,11 @@ test('totals the lines', () => {
   expect(invoiceTotal(invoice)).toBe(11200)
 })
 
+test('rounds a half cent half up', () => {
+  const invoice = createInvoice(customer, [{ description: 'Sticker', quantity: 1, unitCents: 3 }], 0.5)
+  expect(invoiceTotal(invoice)).toBe(5)
+})
+
 test('adds tax', () => {
   const invoice = createInvoice(customer, lines, 0.13)
   expect(invoiceTotal(invoice)).toBe(12656)

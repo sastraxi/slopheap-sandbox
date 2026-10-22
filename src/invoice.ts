@@ -1,4 +1,5 @@
 import type { Customer } from './customers'
+import { roundHalfUp } from './amounts'
 import { formatAmount } from './money'
 
 export interface InvoiceLine {
@@ -31,7 +32,7 @@ export function subtotal(invoice: Invoice): number {
 
 export function invoiceTotal(invoice: Invoice): number {
   const net = subtotal(invoice)
-  return net + net * invoice.taxRate
+  return roundHalfUp(net + net * invoice.taxRate)
 }
 
 export function renderInvoice(invoice: Invoice): string {
