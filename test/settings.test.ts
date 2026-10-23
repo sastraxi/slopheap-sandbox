@@ -8,3 +8,11 @@ test('reads the settings file', () => {
 test('falls back to the defaults', () => {
   expect(DEFAULTS.defaultCurrency).toBe('USD')
 })
+
+test('rejects an unknown rounding rule', () => {
+  expect(() => loadSettings({ rounding: 'half-away' as never })).toThrow()
+})
+
+test('rejects a malformed currency', () => {
+  expect(() => loadSettings({ defaultCurrency: 'usd' })).toThrow()
+})
