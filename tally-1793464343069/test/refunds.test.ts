@@ -16,6 +16,14 @@ test('a refund reduces what the customer owes', () => {
   expect(journal.balance('1100', 'CAD')).toEqual(money(3000, 'CAD'))
 })
 
+test('a refund beyond the invoice is refused', () => {
+  const journal = new Journal()
+  const invoice = createInvoice(customer, [{ description: 'Hosting', quantity: 1, unitCents: 5000 }])
+  postInvoice(journal, invoice)
+  expect(refund(journal, invoice, 4000, 'Outage').ok).toBe(true)
+  expect(refund(journal, invoice, 1500, 'Again')).toEqual({ ok: false, error: 'A refund cannot exceed the invoice' })
+})
+
 test('a refund of nothing is refused', () => {
   const journal = new Journal()
   const invoice = createInvoice(customer, [{ description: 'Hosting', quantity: 1, unitCents: 5000 }])
