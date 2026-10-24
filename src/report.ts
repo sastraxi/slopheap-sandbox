@@ -1,0 +1,11 @@
+import { invoiceTotal, type Invoice } from './invoice'
+
+/** The sum of the invoices' totals. */
+export function totalOf(invoices: readonly Invoice[]): number {
+  return invoices.reduce((total, invoice) => total + invoiceTotal(invoice), 0)
+}
+
+/** The average invoice total, to the cent. */
+export function averageOf(invoices: readonly Invoice[]): number {
+  return Math.round(totalOf(invoices) / invoices.length)
+}
