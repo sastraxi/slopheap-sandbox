@@ -1,5 +1,5 @@
 import { expect, test } from 'bun:test'
-import { createInvoice, invoiceTotal, renderInvoice, subtotal } from '../src/invoice'
+import { createInvoice, invoiceTotal, lineTotal, renderInvoice, subtotal } from '../src/invoice'
 
 const customer = { id: 'cus_1', name: 'Acme', currency: 'USD' }
 const lines = [
@@ -21,6 +21,10 @@ test('rounds a half cent by the rounding rule', () => {
 test('adds tax', () => {
   const invoice = createInvoice(customer, lines, 0.13)
   expect(invoiceTotal(invoice)).toBe(12656)
+})
+
+test('totals one line', () => {
+  expect(lineTotal({ description: 'Design', quantity: 2, unitCents: 5000 })).toBe(10000)
 })
 
 test('renders the lines and the total', () => {

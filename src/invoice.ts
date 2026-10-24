@@ -26,8 +26,12 @@ export function createInvoice(
   return { id: 'inv_' + next++, customer, lines, taxRate, issuedAt: new Date() }
 }
 
+export function lineTotal(line: InvoiceLine): number {
+  return line.quantity * line.unitCents
+}
+
 export function subtotal(invoice: Invoice): number {
-  return invoice.lines.reduce((total, line) => total + line.quantity * line.unitCents, 0)
+  return invoice.lines.reduce((total, line) => total + lineTotal(line), 0)
 }
 
 export function invoiceTotal(invoice: Invoice): number {
@@ -43,7 +47,7 @@ export function renderInvoice(invoice: Invoice): string {
       ' x' +
       line.quantity +
       '  ' +
-      formatAmount(line.quantity * line.unitCents, currency),
+      formatAmount(lineTotal(line), currency),
   )
   return [
     'Invoice ' + invoice.id + ' for ' + invoice.customer.name,
