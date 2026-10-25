@@ -30,5 +30,8 @@ export async function handle(request: Request): Promise<Response> {
     const params = Object.fromEntries(it.keys.map((key, index) => [key, match[index + 1] ?? '']))
     return it.handler(request, params)
   }
-  return new Response('Not found', { status: 404 })
+  const known = routes.some((it) => it.pattern.test(url.pathname))
+  return known
+    ? new Response('Method not allowed', { status: 405 })
+    : new Response('Not found', { status: 404 })
 }
