@@ -13,3 +13,7 @@ test('totals invoices', () => {
 test('averages invoices', () => {
   expect(averageOf([first, second])).toBe(5600)
 })
+
+test('averages an empty list to zero', () => {
+  expect(averageOf([])).toBe(0)
+})

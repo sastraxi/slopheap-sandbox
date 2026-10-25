@@ -7,5 +7,6 @@ export function totalOf(invoices: readonly Invoice[]): number {
 
 /** The average invoice total, to the cent. */
 export function averageOf(invoices: readonly Invoice[]): number {
+  if (invoices.length === 0) return 0
   return Math.round(totalOf(invoices) / invoices.length)
 }
