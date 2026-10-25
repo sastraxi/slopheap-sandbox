@@ -20,9 +20,14 @@ export function roundCents(cents: number): number {
 
 /** Split cents into `parts` shares, the first shares taking the remainder. */
 export function allocate(cents: number, parts: number): number[] {
-  const base = Math.trunc(cents / parts)
-  const remainder = cents - base * parts
-  return Array.from({ length: parts }, (_, index) => base + (index < remainder ? 1 : 0))
+  const sign = Math.sign(cents) || 1
+  const total = Math.abs(cents)
+  const base = Math.trunc(total / parts)
+  const remainder = total - base * parts
+  return Array.from(
+    { length: parts },
+    (_, index) => sign * (base + (index < remainder ? 1 : 0)),
+  )
 }
 
 /** The sum of a list of cents. */

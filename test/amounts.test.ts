@@ -16,6 +16,11 @@ test('allocates without losing a cent', () => {
   expect(allocate(9, 3)).toEqual([3, 3, 3])
 })
 
+test('allocates negative amounts without losing a cent', () => {
+  expect(allocate(-10, 3)).toEqual([-4, -3, -3])
+  expect(sum(allocate(-10, 3))).toBe(-10)
+})
+
 test('sums amounts', () => {
   expect(sum([1, 2, 3])).toBe(6)
   expect(sum([])).toBe(0)
