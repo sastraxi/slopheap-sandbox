@@ -1,13 +1,15 @@
 import { loadSettings } from './settings'
 
-/** Format cents as "$12.34 CAD", in the settings' currency by default. */
+/** Format cents as "-$12.34 CAD", in the settings' currency by default. */
 export function formatAmount(
   cents: number,
   currency: string = loadSettings().defaultCurrency,
 ): string {
-  const dollars = Math.floor(cents / 100).toLocaleString('en-US')
-  const rest = String(cents % 100).padStart(2, '0')
-  return '$' + dollars + '.' + rest + ' ' + currency
+  const sign = cents < 0 ? '-' : ''
+  const absolute = Math.abs(cents)
+  const dollars = Math.floor(absolute / 100).toLocaleString('en-US')
+  const rest = String(absolute % 100).padStart(2, '0')
+  return sign + '$' + dollars + '.' + rest + ' ' + currency
 }
 
 /** Parse "12.34" into cents. */

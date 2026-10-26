@@ -15,3 +15,7 @@ test('parses amounts', () => {
   expect(parseAmount('12.34')).toBe(1234)
   expect(parseAmount('7')).toBe(700)
 })
+
+test('formats negative amounts with a minus', () => {
+  expect(formatAmount(-1234, 'USD')).toBe('-$12.34 USD')
+})
