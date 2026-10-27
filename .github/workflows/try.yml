@@ -1,0 +1,11 @@
+name: try
+on:
+  push:
+    branches: ['slopheap/try/**']
+  pull_request:
+  workflow_dispatch:
+jobs:
+  probe:
+    runs-on: ubuntu-latest
+    steps:
+      - run: echo "try probe on ${GITHUB_REF} at ${GITHUB_SHA} by ${GITHUB_ACTOR}"
