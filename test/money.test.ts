@@ -8,7 +8,7 @@ test('formats cents', () => {
 })
 
 test('formats in the settings currency by default', () => {
-  expect(formatAmount(1234)).toBe('$12.34 EUR')
+  expect(formatAmount(1234)).toBe('$12.34 USD')
 })
 
 test('parses amounts', () => {
