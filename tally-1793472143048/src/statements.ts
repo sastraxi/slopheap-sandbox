@@ -1,5 +1,6 @@
 import type { Customer } from './customers'
 import type { Invoice } from './invoice'
+import { RECEIVABLE } from './ledger/accounts'
 import type { Journal } from './ledger/journal'
 import { formatMoney, type Money, money } from './money'
 
@@ -23,7 +24,7 @@ export function statement(
     const invoiceId = /(inv_\d+)/.exec(entry.memo)?.[1]
     if (invoiceId === undefined || !ids.has(invoiceId)) continue
     for (const posting of entry.postings) {
-      if (posting.account !== '1100') continue
+      if (posting.account !== RECEIVABLE) continue
       const cents = (posting.debit?.cents ?? 0) - (posting.credit?.cents ?? 0)
       lines.push({ at: entry.at, memo: entry.memo, amount: money(cents, customer.currency) })
     }

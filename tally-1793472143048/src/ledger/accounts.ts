@@ -14,6 +14,12 @@ export const ACCOUNTS: readonly Account[] = [
   { code: '4000', name: 'Sales', kind: 'revenue' },
 ]
 
+/** The accounts code posts to, by what they are for. */
+export const CASH = '1000'
+export const RECEIVABLE = '1100'
+export const TAX = '2200'
+export const SALES = '4000'
+
 export function account(code: string): Account {
   const found = ACCOUNTS.find((it) => it.code === code)
   if (found === undefined) throw new Error('No account ' + code)
