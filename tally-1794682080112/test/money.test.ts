@@ -1,13 +1,9 @@
 import { expect, test } from 'bun:test'
-import { addMoney, formatAmount, formatMoney, money, parseAmount } from '../src/money'
-
-test('formats cents', () => {
-  expect(formatAmount(1234, 'CAD')).toBe('$12.34 CAD')
-  expect(formatAmount(5, 'USD')).toBe('$0.05 USD')
-})
+import { addMoney, formatMoney, money, parseAmount } from '../src/money'
 
 test('formats money', () => {
   expect(formatMoney(money(1234, 'CAD'))).toBe('$12.34 CAD')
+  expect(formatMoney(money(5, 'USD'))).toBe('$0.05 USD')
 })
 
 test('adds money of one currency', () => {
