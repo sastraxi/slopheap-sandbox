@@ -1,4 +1,5 @@
 import { type Invoice, invoiceTotal } from './invoice'
+import { RECEIVABLE, SALES } from './ledger/accounts'
 import { credit, debit, type Entry } from './ledger/entry'
 import type { Journal } from './ledger/journal'
 import { err, type Result } from './lib/result'
@@ -19,5 +20,5 @@ export function refund(journal: Journal, invoice: Invoice, cents: number, reason
     return err('A refund cannot exceed the invoice')
   }
   const amount = money(cents, invoice.customer.currency)
-  return journal.record('Refund of ' + invoice.id + ': ' + reason, [debit('4000', amount), credit('1100', amount)])
+  return journal.record('Refund of ' + invoice.id + ': ' + reason, [debit(SALES, amount), credit(RECEIVABLE, amount)])
 }
