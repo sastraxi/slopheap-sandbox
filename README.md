@@ -3,4 +3,12 @@ Slopheap's test repository. Safe to break.
 
 ## Tally
 
-Invoices for small teams. `bun test` runs the suite.
+Invoices for small teams: customers, invoices, and a monthly report.
+
+    bun test
+
+- `src/money.ts` formats and parses cents.
+- `src/amounts.ts` rounds, sums, and allocates cents.
+- `src/settings.ts` reads `settings.json`: the default currency and the rounding rule.
+- `src/invoice.ts` builds and totals invoices.
+- `src/report.ts` sums and averages invoices.
