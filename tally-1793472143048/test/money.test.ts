@@ -4,6 +4,7 @@ import { addMoney, formatMoney, money, parseAmount } from '../src/money'
 test('formats money', () => {
   expect(formatMoney(money(1234, 'CAD'))).toBe('$12.34 CAD')
   expect(formatMoney(money(5, 'USD'))).toBe('$0.05 USD')
+  expect(formatMoney(money(-250, 'CAD'))).toBe('-$2.50 CAD')
 })
 
 test('adds money of one currency', () => {
