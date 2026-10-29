@@ -2,7 +2,7 @@
 export function formatAmount(cents: number, currency: string): string {
   const dollars = Math.floor(cents / 100)
   const rest = String(cents % 100).padStart(2, '0')
-  return '$' + dollars + '.' + rest + ' ' + currency
+  return sign + '$' + dollars + '.' + rest + ' ' + amount.currency
 }
 
 /** Parse "12.34" into cents. */

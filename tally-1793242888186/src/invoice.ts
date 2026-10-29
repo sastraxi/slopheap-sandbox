@@ -1,5 +1,5 @@
 import type { Customer } from './customers'
-import { formatAmount } from './money'
+import { formatMoney, money } from './money'
 
 export interface InvoiceLine {
   description: string
@@ -34,11 +34,11 @@ export function renderInvoice(invoice: Invoice): string {
   const currency = invoice.customer.currency
   const lines = invoice.lines.map(
     (line) =>
-      line.description + ' x' + line.quantity + '  ' + formatAmount(line.quantity * line.unitCents, currency),
+      line.description + ' x' + line.quantity + '  ' + formatMoney(money(line.quantity * line.unitCents, currency)),
   )
   return [
     'Invoice ' + invoice.id + ' for ' + invoice.customer.name,
     ...lines,
-    'Total  ' + formatAmount(invoiceTotal(invoice), currency),
+    'Total  ' + formatMoney(money(invoiceTotal(invoice), currency)),
   ].join('\n')
 }

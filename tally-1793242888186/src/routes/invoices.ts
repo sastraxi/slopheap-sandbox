@@ -17,7 +17,7 @@ route('POST', '/invoices', async (request) => {
   invoices.set(invoice.id, invoice)
   return Response.json({
     id: invoice.id,
-    total: formatAmount(invoiceTotal(invoice), customer.currency),
+    total: formatMoney(money(invoiceTotal(invoice), customer.currency)),
   })
 })
 
