@@ -13,11 +13,9 @@ export function addMoney(a: Money, b: Money): Money {
   return money(a.cents + b.cents, a.currency)
 }
 
-/** Format money, such as 1234 cents of CAD as "$12.34 CAD". */
-export function formatMoney(amount: Money): string {
-  const sign = amount.cents < 0 ? '-' : ''
-  const cents = Math.abs(amount.cents)
-  const dollars = Math.floor(cents / 100)
+/** Format an amount in cents, such as 1234 in CAD as "$12.34 CAD". */
+export function formatAmount(cents: number, currency: string): string {
+  const dollars = Math.floor(cents / 100).toLocaleString('en-US')
   const rest = String(cents % 100).padStart(2, '0')
   return '$' + dollars + '.' + rest + ' ' + currency
 }
