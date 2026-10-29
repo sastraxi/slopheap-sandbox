@@ -1,8 +1,8 @@
 import { findCustomer } from '../customers'
 import { createInvoice, type Invoice, invoiceTotal, renderInvoice } from '../invoice'
-import { formatAmount } from '../money'
 import { postInvoice } from '../ledger/invoices'
 import { journal } from '../ledger/journal'
+import { formatMoney, money } from '../money'
 import { refund } from '../refunds'
 import { route } from './router'
 
