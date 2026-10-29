@@ -1,9 +1,14 @@
 import { expect, test } from 'bun:test'
 import { allocate, roundHalfEven, roundHalfUp, sum } from '../src/amounts'
 
-test('rounds half up', () => {
-  expect(roundHalfUp(1.5)).toBe(2)
-  expect(roundHalfUp(-1.5)).toBe(-2)
+test('rounds a table of cases', () => {
+  const cases: [number, number][] = [
+    [1.4, 1],
+    [1.5, 2],
+    [2.5, 3],
+    [-1.5, -2],
+  ]
+  for (const [input, expected] of cases) expect(roundHalfUp(input)).toBe(expected)
 })
 
 test('rounds half to even', () => {
