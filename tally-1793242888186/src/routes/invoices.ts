@@ -1,6 +1,6 @@
 import { findCustomer } from '../customers'
 import { createInvoice, type Invoice, invoiceTotal, renderInvoice } from '../invoice'
-import { formatAmount } from '../money'
+import { formatMoney, money } from '../money'
 import { route } from './router'
 
 const invoices = new Map<string, Invoice>()
