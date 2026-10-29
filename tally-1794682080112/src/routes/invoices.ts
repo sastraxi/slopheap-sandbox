@@ -1,5 +1,7 @@
 import { findCustomer } from '../customers'
 import { createInvoice, type Invoice, invoiceTotal, renderInvoice } from '../invoice'
+import { postInvoice } from '../ledger/invoices'
+import { journal } from '../ledger/journal'
 import { formatMoney, money } from '../money'
 import { route } from './router'
 
@@ -15,6 +17,7 @@ route('POST', '/invoices', async (request) => {
   if (customer === undefined) return new Response('No such customer', { status: 404 })
   const invoice = createInvoice(customer, body.lines, body.taxRate)
   invoices.set(invoice.id, invoice)
+  postInvoice(journal, invoice)
   return Response.json({
     id: invoice.id,
     total: formatMoney(money(invoiceTotal(invoice), customer.currency)),
