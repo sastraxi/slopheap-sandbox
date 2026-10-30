@@ -29,7 +29,7 @@ export function statement(
       lines.push({ at: entry.at, memo: entry.memo, amount: money(cents, customer.currency) })
     }
   }
-  return lines
+  return lines.sort((a, b) => a.at.getTime() - b.at.getTime())
 }
 
 export function renderStatement(customer: Customer, month: string, lines: readonly StatementLine[]): string {
