@@ -1,6 +1,6 @@
 /** Format an amount in cents, such as 1234 in CAD as "$12.34 CAD". */
 export function formatAmount(cents: number, currency: string): string {
-  const dollars = Math.floor(cents / 100)
+  const dollars = Math.floor(cents / 100).toLocaleString('en-US')
   const rest = String(cents % 100).padStart(2, '0')
   return '$' + dollars + '.' + rest + ' ' + currency
 }
