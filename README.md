@@ -1,3 +1,2 @@
 # slopheap-sandbox
-Main's own line, run 1793478296431.
-Run 1793478296431.
+Slopheap's test repository. Safe to break.
