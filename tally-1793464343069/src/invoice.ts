@@ -1,6 +1,6 @@
 import type { Customer } from './customers'
-import { formatAmount } from './money'
 import { newId } from './lib/ids'
+import { formatAmount } from './money'
 
 export interface InvoiceLine {
   description: string
