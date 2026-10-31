@@ -15,10 +15,8 @@ export interface Invoice {
   issuedAt: Date
 }
 
-let next = 1
-
 export function createInvoice(customer: Customer, lines: InvoiceLine[], taxRate = 0): Invoice {
-  return { id: 'inv_' + next++, customer, lines, taxRate, issuedAt: new Date() }
+  return { id: newId('inv'), customer, lines, taxRate, issuedAt: new Date() }
 }
 
 export function subtotal(invoice: Invoice): number {
