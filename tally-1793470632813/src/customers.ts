@@ -1,3 +1,5 @@
+import { newId } from './lib/ids'
+
 export interface Customer {
   id: string
   name: string
@@ -6,10 +8,9 @@ export interface Customer {
 }
 
 const customers = new Map<string, Customer>()
-let next = 1
 
 export function addCustomer(input: Omit<Customer, 'id'>): Customer {
-  const customer = { ...input, id: 'cus_' + next++ }
+  const customer = { ...input, id: newId('cus') }
   customers.set(customer.id, customer)
   return customer
 }
