@@ -1,0 +1,22 @@
+name: test
+on:
+  push:
+    branches: [main, 'space/**', 'extract/**', 'slopheap/try/**']
+  pull_request:
+  workflow_dispatch:
+jobs:
+  test:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: oven-sh/setup-bun@v2
+      - name: bun test in every project
+        run: |
+          status=0
+          for project in $(find . -name package.json -not -path '*/node_modules/*'); do
+            dir=$(dirname "$project")
+            echo "::group::$dir"
+            (cd "$dir" && bun test) || status=1
+            echo "::endgroup::"
+          done
+          exit $status
