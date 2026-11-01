@@ -1,4 +1,5 @@
-/** What the amounts add up to. */
+/** What the amounts add up to, to the cent. */
 export function total(amounts: number[]): number {
-  return amounts.reduce((sum, amount) => sum + amount, 0)
+  const sum = amounts.reduce((acc, amount) => acc + amount, 0)
+  return Math.round(sum * 100) / 100
 }
