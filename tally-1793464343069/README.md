@@ -13,3 +13,4 @@ Invocies for small teams: customers, invoices, and an HTTP API.
 - src/invoice.ts builds and totals invoices.
 - src/customers.ts keeps customers.
 - src/routes/ serves the HTTP API.
+- src/total.ts adds up a list of amounts, to the cent.
