@@ -3,6 +3,7 @@ Slopheap's test repository. Safe to break.
 
 ## Tally
 
+Invoices for small teams: customers and invoices.
 
     bun test
 
