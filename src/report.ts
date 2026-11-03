@@ -1,6 +1,6 @@
 import { invoiceTotal, type Invoice } from './invoice'
 
-/** The sum of the invoices' totals. */
+/** The sum of the invoices' totals, rounded to the cent. */
 export function totalOf(invoices: readonly Invoice[]): number {
   return invoices.reduce((total, invoice) => total + invoiceTotal(invoice), 0)
 }
