@@ -1,4 +1,4 @@
-/** What the amounts add up to. */
+/** What the amounts add up to, with the sum taken in whole cents. */
 export function total(amounts: number[]): number {
-  return Math.round(amounts.reduce((sum, amount) => sum + amount, 0) * 100) / 100
+  return amounts.reduce((sum, amount) => sum + Math.round(amount * 100), 0) / 100
 }
