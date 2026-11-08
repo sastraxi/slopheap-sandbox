@@ -1,7 +1,11 @@
 name: test
 on:
+  # A push runs on main and on the spaces. A pull request runs on its own
+  # event, so an `extract/` branch is tested once: a push trigger for it
+  # would run the same job twice on one commit, and one of the two would
+  # queue behind the other, which is what a required check must not wait on.
   push:
-    branches: [main, 'space/**', 'extract/**', 'slopheap/try/**']
+    branches: [main, 'space/**', 'slopheap/try/**']
   pull_request:
   workflow_dispatch:
 jobs:
