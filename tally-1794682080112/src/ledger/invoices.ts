@@ -12,6 +12,9 @@ export function postInvoice(journal: Journal, invoice: Invoice): Result<Entry> {
   return journal.record(
     'Invoice ' + invoice.id,
     [
+      debit('1100', money(total, currency)),
+      credit('4000', money(net, currency)),
+      credit('2200', money(total - net, currency)),
     ],
     invoice.issuedAt,
   )

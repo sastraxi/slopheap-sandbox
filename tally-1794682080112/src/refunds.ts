@@ -19,4 +19,5 @@ export function refund(journal: Journal, invoice: Invoice, cents: number, reason
     return err('A refund cannot exceed the invoice')
   }
   const amount = money(cents, invoice.customer.currency)
+  return journal.record('Refund of ' + invoice.id + ': ' + reason, [debit('4000', amount), credit('1100', amount)])
 }
