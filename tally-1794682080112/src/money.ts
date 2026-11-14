@@ -17,7 +17,7 @@ export function addMoney(a: Money, b: Money): Money {
 export function formatMoney(amount: Money): string {
   const sign = amount.cents < 0 ? '-' : ''
   const cents = Math.abs(amount.cents)
-  const dollars = Math.floor(cents / 100)
+  const dollars = Math.floor(cents / 100).toLocaleString('en-US')
   const rest = String(cents % 100).padStart(2, '0')
   return sign + '$' + dollars + '.' + rest + ' ' + amount.currency
 }
