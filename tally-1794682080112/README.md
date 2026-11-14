@@ -1,11 +1,11 @@
 # Tally
 
-Invocies for small teams: customers, invoices, and an HTTP API.
+Invoices for small teams: customers, invoices, and an HTTP API.
 
 ## Running
 
     bun test
-    bun run src/server.ts
+    bun run start
 
 ## Layout
 
