@@ -5,6 +5,16 @@ export function formatAmount(cents: number, currency: string): string {
   return '$' + dollars + '.' + rest + ' ' + currency
 }
 
+/** An amount of one currency, in its smallest unit. */
+export interface Money {
+  readonly cents: number
+  readonly currency: string
+}
+
+export function money(cents: number, currency: string): Money {
+  return { cents: Math.round(cents), currency }
+}
+
 /** Parse "12.34" into cents. */
 export function parseAmount(text: string): number {
   const [whole, fraction = '0'] = text.trim().split('.')
